@@ -1,20 +1,21 @@
 import logging
 from logging.config import fileConfig
-
 from telethon import TelegramClient
+from telethon.tl.types import UpdateNewChannelMessage
 
-from config.config import load_config
+from config.config import CryptoBotConfig
 
 
 def callback(update):
     logger = logging.getLogger()
 
-    print(type(update))
-    if "UpdateNewChannelMessage" in update:
+    if isinstance(update, UpdateNewChannelMessage):
+        result = update.message
+
+        # todo check specified channel
+
         logger.info(update)
-    else:
-        logger.debug("other...")
-    logger.debug(update)
+        logger.info("Message : " + str(result.message))
 
 
 def first_connection(client, config):
@@ -24,7 +25,9 @@ def first_connection(client, config):
 
 
 def main():
-    config = load_config()
+    config = CryptoBotConfig()
+    user_config = config.get_user_config()
+    pattern_config = config.get_pattern_config()
     fileConfig('logging_config.ini')
     logger = logging.getLogger()
 
@@ -32,7 +35,7 @@ def main():
     #
     # print(my_bittrex.get_balance('BTC'))
 
-    client = TelegramClient("Test", config["telegram-api"]["api_id"], config["telegram-api"]["api_hash"],
+    client = TelegramClient("Test", user_config["telegram-api"]["api_id"], user_config["telegram-api"]["api_hash"],
                             update_workers=1, spawn_read_thread=False)
 
     #
@@ -40,9 +43,9 @@ def main():
     if client.is_connected():
 
         if not client.is_user_authorized():
-            first_connection(client, config)
+            first_connection(client, user_config)
 
-            logger.debug("Client connected to Telegram.")
+            logger.info("Client connected to Telegram.")
         client.add_update_handler(callback)
         client.idle()
         client.disconnect()
