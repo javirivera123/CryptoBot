@@ -1,64 +1,76 @@
-from time import sleep
-
-from telethon.tl.functions.messages import GetDialogsRequest
-from telethon.tl.types import InputPeerEmpty
+from telegram.ext import Updater, MessageHandler, Filters, ConversationHandler, CommandHandler, RegexHandler
 
 from config.config import load_config
-import telebot
-from telethon import TelegramClient
 
-config = load_config()
-dialogs = []
-users = []
-chats = []
+SIGNAL, OTHER = range(2)
 
-last_date = None
-chunk_size = 20
-
-client = TelegramClient('some_name', config["telegram-api"]["api_id"], config["telegram-api"]["api_hash"])
-client.connect()
-client.is_user_authorized()
-client.send_code_request(config["telegram-api"]["phone_number"])
-myself = client.sign_in(config["telegram-api"]["phone_number"], input('Enter code: '))
-
-channel = client.get_entity('https://t.me/dlavrov_tch')
+def start(bot, update):
+    print("BEGIN")
+    return SIGNAL
 
 
-while True:
-    result = client(GetDialogsRequest(
-                 offset_date=last_date,
-                 offset_id=0,
-                 offset_peer=InputPeerEmpty(),
-                 limit=chunk_size
-             ))
-    dialogs.extend(result.dialogs)
-    users.extend(result.users)
-    chats.extend(result.chats)
-    if not result.messages:
-        break
-    last_date = min(msg.date for msg in result.messages)
-    sleep(2)
-
-print(result)
-
-# def main():
+def echo(bot, update):
+    print(update.message.text)
+    # update.message.reply_text(update.message.text)
+    return SIGNAL
 
 
-    # bot = telebot.TeleBot(config["crypto-bot"]["token"])
-    #
-    # print(bot.get_updates(timeout=0.01))
+def cancel(bot, update):
+    print("STOP")
+    return ConversationHandler.END
 
 
+def main():
+    config = load_config()
 
     # my_bittrex = Bittrex(config["bittrex-key"]["key"], config["bittrex-key"]["secret"], api_version=API_V2_0)
     #
     # print(my_bittrex.get_balance('BTC'))
 
-    # @bot.message_handler(commands=['herklos'])
-    # def send_something(message):
-    #     bot.reply_to(message, "TEST--")
+    updater = Updater(config["crypto-bot"]["token"])
+
+    # Get the dispatcher to register handlers
+    dp = updater.dispatcher
+
+    # Add conversation handler with the states GENDER, PHOTO, LOCATION and BIO
+    conv_handler = ConversationHandler(
+        entry_points=[MessageHandler(Filters.text, start)],
+
+        states={
+            SIGNAL: [MessageHandler(Filters.text, echo)]
+        },
+
+        fallbacks=[MessageHandler(Filters.text, cancel)]
+    )
     #
-    # bot.polling()
+    # GENDER: [RegexHandler('^(Boy|Girl|Other)$', gender)],
+    #
+    # PHOTO: [MessageHandler(Filters.photo, photo),
+    #         CommandHandler('skip', skip_photo)],
+    #
+    # LOCATION: [MessageHandler(Filters.location, location),
+    #            CommandHandler('skip', skip_location)],
+    #
+    # BIO: [MessageHandler(Filters.text, bio)]
+
+    dp.add_handler(conv_handler)
+
+    # log all errors
+    # dp.add_error_handler(error)
+
+    # Start the Bot
+    updater.start_polling()
+
+    # Run the bot until the you presses Ctrl-C or the process receives SIGINT,
+    # SIGTERM or SIGABRT. This should be used most of the time, since
+    # start_polling() is non-blocking and will stop the bot gracefully.
+    updater.idle()
+
+    # updater.bot.getChat("https://t.me/dlavrov_tch")
+
+    updater.start_polling()
+    updater.idle()
 
 
-# main()
+if __name__ == '__main__':
+    main()
