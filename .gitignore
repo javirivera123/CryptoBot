@@ -103,3 +103,5 @@ ENV/
 \.idea/
 
 config/config\.json
+
+Test\.session
