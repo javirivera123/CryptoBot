@@ -10,7 +10,7 @@ from pattern_parser import PatternParser
 config = CryptoBotConfig()
 user_config = config.get_user_config()
 pattern_config = config.get_pattern_config()
-fileConfig('logging_config.ini')
+fileConfig('config/logging_config.ini')
 logger = logging.getLogger()
 
 

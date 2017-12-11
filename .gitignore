@@ -101,7 +101,5 @@ ENV/
 .mypy_cache/
 
 \.idea/
-
 config/config\.json
-
-Test\.session
+*.session
