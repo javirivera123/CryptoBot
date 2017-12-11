@@ -1,0 +1,23 @@
+{
+  "EXCAVO": {
+    "channel_id": 0,
+    "regex_buy": "",
+    "regex_sell": "",
+    "regex_stop": "",
+    "target": ""
+  },
+  "DLavrov":{
+    "channel_id": 0,
+    "regex_buy": "Buy:+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "regex_sell": "Take-Profit:+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "regex_stop": "Stop-Loss:+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "target": ""
+  },
+  "Crypto_Experts":{
+    "channel_id": 1131704561,
+    "regex_buy": "Buy+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "regex_sell": "Sell+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "regex_stop": "Stop+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "target": "TARGET+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})"
+  }
+}
