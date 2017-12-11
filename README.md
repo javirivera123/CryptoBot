@@ -11,7 +11,6 @@ Get the project sources
 git clone https://github.com/Herklos/CryptoBot-Telegram
 cd CryptoBot-Telegram
 pip install -r requirements.txt
-python main.py
 ```
 Configuration<br>
 - *Copy config/default_config.json --> config/config.json*
@@ -32,6 +31,14 @@ Configuration<br>
 ```
 
 ## Usage
-
+### Backtesting (Working)
+```
+python main.py --backtest
+```
+### RealTime trading (Working)
+```
+python main.py --realtrade
+```
 
 ## Development
+TODO
