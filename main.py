@@ -17,11 +17,11 @@ logger = logging.getLogger()
 def callback(update):
     if isinstance(update, UpdateNewChannelMessage):
         msg = update.message
-        pattern_parser = PatternParser(pattern_config["Crypto_Experts"], msg.message)
+        pattern_parser = PatternParser(pattern_config["DLavrov"], msg.message)
 
         # todo check specified channel
 
-        logger.info(update)
+        # logger.info(update)
         logger.info("Buy : " + str(pattern_parser.get_buy_value()) + " Sell : " + str(pattern_parser.get_sell_value())
                     + " Stop : " + str(pattern_parser.get_stop_value()) + " Target : " + str(
             pattern_parser.get_target_value()))
@@ -29,7 +29,7 @@ def callback(update):
 
 
 def main():
-    td = TelegramDriver(config)
+    td = TelegramDriver(user_config)
     td.connect()
     td.add_handler_update(callback)
     td.call_idle()

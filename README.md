@@ -1,4 +1,4 @@
-# CryptoBot-Telegram
+# CryptoBot
 
 ## Install
 ### Prerequisites
@@ -8,7 +8,7 @@
 ### Installation
 Get the project sources
 ```
-git clone https://github.com/Herklos/CryptoBot-Telegram
+git clone https://github.com/Herklos/CryptoBot
 cd CryptoBot-Telegram
 pip install -r requirements.txt
 ```
