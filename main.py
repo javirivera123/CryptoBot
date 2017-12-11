@@ -4,33 +4,35 @@ from telethon import TelegramClient
 from telethon.tl.types import UpdateNewChannelMessage
 
 from config.config import CryptoBotConfig
+from pattern_parser import PatternParser
+
+# General
+config = CryptoBotConfig()
+user_config = config.get_user_config()
+pattern_config = config.get_pattern_config()
+fileConfig('logging_config.ini')
+logger = logging.getLogger()
 
 
 def callback(update):
-    logger = logging.getLogger()
-
     if isinstance(update, UpdateNewChannelMessage):
-        result = update.message
+        msg = update.message.message
+        pattern_parser = PatternParser(pattern_config["Crypto_Experts"], msg)
 
         # todo check specified channel
 
         logger.info(update)
-        logger.info("Message : " + str(result.message))
+        logger.info("Buy : " + str(pattern_parser.get_buy_value()) + " Sell : " + str(pattern_parser.get_sell_value()) + " Stop : " + str(pattern_parser.get_stop_value()))
+        # logger.info("Message : " + str(result.message))
 
 
 def first_connection(client, config):
     client.send_code_request(config["telegram-api"]["phone_number"])
     myself = client.sign_in(config["telegram-api"]["phone_number"], input('Enter code: '))
-    logging.getLogger().info(myself.stringify())
+    logger.info(myself.stringify())
 
 
 def main():
-    config = CryptoBotConfig()
-    user_config = config.get_user_config()
-    pattern_config = config.get_pattern_config()
-    fileConfig('logging_config.ini')
-    logger = logging.getLogger()
-
     # my_bittrex = Bittrex(config["bittrex-key"]["key"], config["bittrex-key"]["secret"], api_version=API_V2_0)
     #
     # print(my_bittrex.get_balance('BTC'))
