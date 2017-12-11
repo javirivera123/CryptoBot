@@ -21,7 +21,7 @@ def callback(update):
 def first_connection(client, config):
     client.send_code_request(config["telegram-api"]["phone_number"])
     myself = client.sign_in(config["telegram-api"]["phone_number"], input('Enter code: '))
-    # print(myself.stringify())
+    logging.getLogger().info(myself.stringify())
 
 
 def main():

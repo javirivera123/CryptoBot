@@ -1,10 +1,20 @@
 {
   "EXCAVO": {
-    "channel_id": "",
-    "regex": ""
+    "channel_id": 0,
+    "regex_buy": "",
+    "regex_sell": "",
+    "regex_stop": ""
   },
   "DLavrov":{
-    "channel_id": "",
-    "regex": ""
+    "channel_id": 0,
+    "regex_buy": "",
+    "regex_sell": "",
+    "regex_stop": ""
+  },
+  "Crypto Experts":{
+    "channel_id": 1131704561,
+    "regex_buy": "/(Stop)+(\\s)+([0-9]\\.)+([0-9]{1,3})\\w+/g",
+    "regex_sell": "/(Sell)+(\\s)+([0-9]\\.)+([0-9]{1,3})\\w+/g",
+    "regex_stop": "/(Buy)+(\\s)+([0-9]\\.)+([0-9]{1,3})\\w+/g"
   }
 }
