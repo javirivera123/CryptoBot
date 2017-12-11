@@ -29,6 +29,9 @@ class TelegramDriver:
         else:
             self.logger.error("Client not connected")
 
+    def send_to_channel(self, channel_id, msg):
+        self.client.send_message(channel_id, msg)
+
     def add_handler_update(self, callback):
         self.client.add_update_handler(callback)
 

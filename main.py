@@ -12,24 +12,27 @@ user_config = config.get_user_config()
 pattern_config = config.get_pattern_config()
 fileConfig('config/logging_config.ini')
 logger = logging.getLogger()
+td = TelegramDriver(user_config)
 
 
 def callback(update):
     if isinstance(update, UpdateNewChannelMessage):
-        msg = update.message
-        pattern_parser = PatternParser(pattern_config["DLavrov"], msg.message)
-
         # todo check specified channel
+        msg = update.message
+        try:
+            pattern_parser = PatternParser(pattern_config["DLavrov"], msg.message)
+            money, buy, stop, sell = pattern_parser.parse()
+            result = "Money : " + money + "\r\nBuy : " + str(buy) + "\r\nSell : " + str(sell) + "\r\nStop : " + str(stop)
+            # logger.info(result)
+            td.send_to_channel(user_config["my_config"]["my_signal_channel"], result)
+        except AttributeError as e:
+            logger.exception(e)
 
-        # logger.info(update)
-        logger.info("Buy : " + str(pattern_parser.get_buy_value()) + " Sell : " + str(pattern_parser.get_sell_value())
-                    + " Stop : " + str(pattern_parser.get_stop_value()) + " Target : " + str(
-            pattern_parser.get_target_value()))
-        # logger.info("Message : " + str(result.message))
+        except Exception as e:
+            logger.warning(e)
 
 
 def main():
-    td = TelegramDriver(user_config)
     td.connect()
     td.add_handler_update(callback)
     td.call_idle()
