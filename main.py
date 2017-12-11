@@ -4,7 +4,7 @@ from telethon import TelegramClient
 from telethon.tl.types import UpdateNewChannelMessage
 
 from config.config import CryptoBotConfig
-from pattern_parser import PatternParser
+from patterns.pattern_parser import PatternParser
 
 # General
 config = CryptoBotConfig()

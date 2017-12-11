@@ -21,7 +21,7 @@ class CryptoBotConfig:
 
     def load_patterns(self):
         try:
-            with open('config/patterns.json') as json_data_file:
+            with open('patterns/patterns.json') as json_data_file:
                 self.patterns = json.load(json_data_file)
             self.logger.info("Pattern config loaded successfully.")
         except Exception as e:
