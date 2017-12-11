@@ -16,13 +16,14 @@ logger = logging.getLogger()
 
 def callback(update):
     if isinstance(update, UpdateNewChannelMessage):
-        msg = update.message.message
-        pattern_parser = PatternParser(pattern_config["Crypto_Experts"], msg)
+        msg = update.message
+        pattern_parser = PatternParser(pattern_config["Crypto_Experts"], msg.message)
 
         # todo check specified channel
 
         logger.info(update)
-        logger.info("Buy : " + str(pattern_parser.get_buy_value()) + " Sell : " + str(pattern_parser.get_sell_value()) + " Stop : " + str(pattern_parser.get_stop_value()))
+        logger.info("Buy : " + str(pattern_parser.get_buy_value()) + " Sell : " + str(pattern_parser.get_sell_value())
+        + " Stop : " + str(pattern_parser.get_stop_value()) + " Target : " + str(pattern_parser.get_target_value()))
         # logger.info("Message : " + str(result.message))
 
 

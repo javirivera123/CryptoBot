@@ -1,0 +1,11 @@
+{
+  "bittrex-key": {
+    "key" : "",
+    "secret" : ""
+  },
+  "telegram-api":{
+    "api_id" : "",
+    "api_hash" : "",
+    "phone_number" : "+3"
+  }
+}
