@@ -11,6 +11,7 @@ class CryptoBotConfig:
         self.logger = logging.getLogger()
         self.load_config()
         self.load_patterns()
+        self.load_dialogs()
 
     def load_config(self):
         try:
