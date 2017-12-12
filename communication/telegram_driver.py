@@ -45,6 +45,7 @@ class TelegramDriver:
 
     def call_idle(self):
         self.client.idle()
+        self.send_to_channel(self.config["crypto-bot"]["channel_id"], self.bot_dialog_config["Stop"])
 
     def disconnect(self):
         self.client.disconnect()
