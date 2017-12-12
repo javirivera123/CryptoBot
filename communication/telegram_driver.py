@@ -1,5 +1,6 @@
 import logging
 
+from telegram.ext import Updater
 from telethon import TelegramClient
 
 
@@ -8,6 +9,10 @@ class TelegramDriver:
         self.config = config
         self.client = None
         self.logger = logging.getLogger()
+        self.updater_telegram_channel = Updater(self.config["crypto-bot"]["token"])
+
+    def log_started(self):
+        self.send_to_channel(self.config["crypto-bot"]["channel_id"], "Herklos Crypto Bot signals restarted...")
 
     def first_connection(self):
         self.client.send_code_request(self.config["telegram-api"]["phone_number"])
@@ -31,7 +36,7 @@ class TelegramDriver:
             self.logger.error("Client not connected")
 
     def send_to_channel(self, channel_id, msg):
-        self.client.send_message(channel_id, msg)
+        self.updater_telegram_channel.bot.send_message(chat_id=channel_id, text=msg)
 
     def add_handler_update(self, callback):
         self.client.add_update_handler(callback)

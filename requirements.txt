@@ -1,5 +1,3 @@
-telegram
-telepot
+python-telegram-bot
 telethon
-telebot
 bittrex
