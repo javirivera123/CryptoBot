@@ -3,9 +3,16 @@
     "key" : "",
     "secret" : ""
   },
+  "bitfinex-key": {
+    "key" : "",
+    "secret" : ""
+  },
   "telegram-api":{
     "api_id" : "",
     "api_hash" : "",
     "phone_number" : ""
+  },
+  "my_config":{
+    "my_signal_channel" : ""
   }
 }

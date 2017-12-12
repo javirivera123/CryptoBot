@@ -19,9 +19,10 @@ Configuration<br>
 "telegram-api":{
     "api_id" : "YOUR_API_ID",
     "api_hash" : "YOUR_API_HASH",
-    "phone_number" : "+33122334455"
+    "phone_number" : "YOUR_TEL_NUM"
   }
 ```
+*Your tel num with your code number before.*
 - (Optional) Change **bittrex-key**
 ```
 "bittrex-key": {
@@ -41,4 +42,11 @@ python main.py --realtrade
 ```
 
 ## Development
-TODO
+Get the project sources
+```
+git clone https://github.com/Herklos/CryptoBot
+cd CryptoBot-Telegram
+pip install -r requirements.txt
+```
+
+Check **issues** and **project** page of this repository.

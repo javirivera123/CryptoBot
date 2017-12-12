@@ -27,8 +27,14 @@ class CryptoBotConfig:
         except Exception as e:
             self.logger.exception(e)
 
+    def format_patterns(self):
+        result = {}
+        for pattern in self.patterns.values():
+            result[pattern["channel_id"]] = pattern
+        return result
+
     def get_user_config(self):
         return self.user
 
     def get_pattern_config(self):
-        return self.patterns
+        return self.format_patterns()
