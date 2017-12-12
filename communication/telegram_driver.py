@@ -5,14 +5,16 @@ from telethon import TelegramClient
 
 
 class TelegramDriver:
-    def __init__(self, config):
+    def __init__(self, config, bot_dialog_config):
         self.config = config
+        self.bot_dialog_config = bot_dialog_config
         self.client = None
         self.logger = logging.getLogger()
         self.updater_telegram_channel = Updater(self.config["crypto-bot"]["token"])
 
     def log_started(self):
-        self.send_to_channel(self.config["crypto-bot"]["channel_id"], "Herklos Crypto Bot signals restarted...")
+        self.send_to_channel(self.config["crypto-bot"]["channel_id"], self.bot_dialog_config["Start"])
+        self.send_to_channel(self.config["crypto-bot"]["channel_id"], self.bot_dialog_config["Ready"])
 
     def first_connection(self):
         self.client.send_code_request(self.config["telegram-api"]["phone_number"])

@@ -9,10 +9,11 @@ from patterns.pattern_parser import PatternParser
 # General
 config = CryptoBotConfig()
 user_config = config.get_user_config()
+bot_dialog_config = config.get_bot_dialogs()
 pattern_config = config.get_pattern_config()
 fileConfig('config/logging_config.ini')
 logger = logging.getLogger()
-td = TelegramDriver(user_config)
+td = TelegramDriver(user_config, bot_dialog_config)
 td.log_started()
 
 
