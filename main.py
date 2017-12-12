@@ -29,6 +29,7 @@ def callback(update):
             logger.exception(e)
 
         except Exception as e:
+            logger.debug(update)
             logger.warning(e)
 
 

@@ -19,9 +19,10 @@ Configuration<br>
 "telegram-api":{
     "api_id" : "YOUR_API_ID",
     "api_hash" : "YOUR_API_HASH",
-    "phone_number" : "+33122334455"
+    "phone_number" : "YOUR_TEL_NUM"
   }
 ```
+*Your tel num with your code number before.*
 - (Optional) Change **bittrex-key**
 ```
 "bittrex-key": {
