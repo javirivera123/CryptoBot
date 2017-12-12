@@ -25,7 +25,8 @@ class TelegramDriver:
 
             if not self.client.is_user_authorized():
                 self.first_connection()
-                self.logger.info("Client connected to Telegram.")
+
+            self.logger.info("Client connected to Telegram.")
         else:
             self.logger.error("Client not connected")
 
