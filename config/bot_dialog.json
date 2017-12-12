@@ -1,0 +1,7 @@
+{
+  "Start": "@herklos_crypto_bot v0.0.1 starting...",
+  "Ready": "@herklos_crypto_bot ready !",
+  "Version": "Version 0.0.1",
+  "Changelog": "Telegram channel bot implementation",
+  "Stop": "@herklos_crypto_bot stopping..."
+}
