@@ -5,14 +5,16 @@
     "regex_buy": "(?<=Buy:)(\\s{0,})([0-9]{1,}\\.)([0-9]{1,})",
     "regex_sell": "(?<=Take-Profit:)(\\s{0,})([0-9]{1,}\\.)([0-9]{1,})",
     "regex_stop": "(?<=Stop-Loss:)(\\s{0,})([0-9]{1,}\\.)([0-9]{1,})",
-    "regex_target": ""
+    "regex_target": "",
+    "btc_only": 0
   },
   "Top Crypto Signals":{
     "channel_id": 1131704561,
-    "regex_money": "(([A-Z]{1,3})+USDT)|(([A-Z]{1,3})+USD)|(([A-Z]{1,3})+BTC)",
+    "regex_money": "(?<=🔵 #)([A-Z]{1,})(?= 🔵)",
     "regex_buy": "Buy+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
     "regex_sell": "Sell+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
     "regex_stop": "Stop+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
-    "regex_target": ""
+    "regex_target": "",
+    "btc_only": 1
   }
 }

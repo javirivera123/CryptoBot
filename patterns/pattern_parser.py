@@ -58,4 +58,5 @@ class PatternParser:
                 and stop is not None:
             return [money, buy, stop, sell]
         else:
-            raise Exception("Parsing failed")
+            print(sell, buy, stop, money)
+            # raise Exception("Parsing failed")
