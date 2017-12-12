@@ -1,9 +1,11 @@
 import logging
 from logging.config import fileConfig
+
+from telegram.ext import Updater
 from telethon.tl.types import UpdateNewChannelMessage
+from communication.telegram_driver import TelegramDriver
 from config.config import CryptoBotConfig
 from patterns.pattern_parser import PatternParser
-from telegram.telegram_driver import TelegramDriver
 
 # General
 
@@ -13,6 +15,7 @@ pattern_config = config.get_pattern_config()
 fileConfig('config/logging_config.ini')
 logger = logging.getLogger()
 td = TelegramDriver(user_config)
+updater_telegram_channel = Updater(user_config["crypto-bot"]["token"])
 
 
 def callback(update):
@@ -31,6 +34,7 @@ def callback(update):
                          + "\r\nStop : " + str(stop)
                 # logger.info(result)
                 td.send_to_channel(user_config["my_config"]["my_signal_channel"], result)
+                updater_telegram_channel.bot.send_message(chat_id=user_config["crypto-bot"]["channel_id"], text=result)
             else:
                 raise Exception("Unknown channel")
         except Exception as e:
