@@ -42,4 +42,11 @@ python main.py --realtrade
 ```
 
 ## Development
-TODO
+Get the project sources
+```
+git clone https://github.com/Herklos/CryptoBot
+cd CryptoBot-Telegram
+pip install -r requirements.txt
+```
+
+Check **issues** and **project** page of this repository.
