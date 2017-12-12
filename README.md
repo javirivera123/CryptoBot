@@ -47,6 +47,7 @@ Get the project sources
 git clone https://github.com/Herklos/CryptoBot
 cd CryptoBot-Telegram
 pip install -r requirements.txt
+git checkout dev
 ```
 
 Check **issues** and **project** page of this repository.

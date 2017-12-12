@@ -18,20 +18,21 @@ td = TelegramDriver(user_config)
 def callback(update):
     if isinstance(update, UpdateNewChannelMessage):
         msg = update.message
+        logger.debug(update)
         try:
             # check if its known channel
             channel_id = msg.to_id.channel_id
             if channel_id in pattern_config:
                 pattern_parser = PatternParser(pattern_config[channel_id], msg.message)
                 money, buy, stop, sell = pattern_parser.parse()
-                result = "Money : " + money + "\r\nBuy : " + str(buy) + "\r\nSell : " + str(sell) + "\r\nStop : " + str(stop)
+                result = "Money : " + money \
+                         + "\r\nBuy : " + str(buy) \
+                         + "\r\nSell : " + str(sell) \
+                         + "\r\nStop : " + str(stop)
                 # logger.info(result)
                 td.send_to_channel(user_config["my_config"]["my_signal_channel"], result)
             else:
                 raise Exception("Unknown channel")
-        except AttributeError as e:
-            logger.exception(e)
-
         except Exception as e:
             # logger.debug(update)
             logger.warning(e)

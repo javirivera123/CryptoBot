@@ -16,5 +16,14 @@
     "regex_stop": "Stop+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
     "regex_target": "",
     "btc_only": 1
+  },
+  "CRYPTO WHALES":{
+    "channel_id": 1228043983,
+    "regex_money": "(?<=#)([A-Z]{1,})",
+    "regex_buy": "BUY+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "regex_sell": "Sell+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "regex_stop": "STOP+(\\s{0,})+([0-9]{1,}\\.)+([0-9]{1,})",
+    "regex_target": "",
+    "btc_only": 1
   }
 }
