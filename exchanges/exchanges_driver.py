@@ -1,10 +1,12 @@
 from bittrex import Bittrex, BOTH_ORDERBOOK
 
+from exchanges.bitfinex_client import TradeClient, Client
+
 
 class BitfinexExchangeDriver:
     def __init__(self, config):
         self.client = Client()
-        self.account = TradeClient()
+        self.account = TradeClient(config["bitfinex-key"]["key"], config["bitfinex-key"]["secret"])
         self.balance = None
 
     def get_balance(self, coin=""):
