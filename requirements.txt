@@ -1,3 +1,4 @@
+pyalgotrade
 requests
 python-telegram-bot
 telethon
